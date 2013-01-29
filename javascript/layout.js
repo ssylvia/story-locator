@@ -98,29 +98,37 @@ function generateGraphics(index){
 
 					var group;
 					var fileChange;
-					if (i == 2){
-						group = 'green';
-						fileChange = '';
+
+          var template = graphic.attributes.Template;
+					if (template == "AMap Tour"){
+						fileChange = 'RedPin';
 					}
-					else if (i == 1){
-						group = 'blue';
-						fileChange = 'b';
+					else if (template == "BShortlist"){
+						fileChange = 'OrangePin';
+					}
+  				else if (template == "CSide Panel"){
+						fileChange = 'YellowPin';
+					}
+  				else if (template == "DSwipe Series"){
+						fileChange = 'GreenPin';
+					}
+  				else if (template == "EPlaylist"){
+						fileChange = 'BluePin';
 					}
 					else{
-						group = 'red';
-						fileChange = '';
+						fileChange = 'PurplePin';
 					}
 
 					var pt = graphic.geometry;
 					var attr = graphic.attributes;
-					var sym = new esri.symbol.PictureMarkerSymbol("images/icons/"+group+"/NumberIcon"+fileChange+(j+1)+".png", 22, 28).setOffset(3,8);
+					var sym = new esri.symbol.PictureMarkerSymbol("images/icons/colored/"+fileChange+".png", 22, 26).setOffset(0,8);
 					var info = layer.infoTemplate;
 
 					if (graphic.attributes.order){
 						$("#story"+index+"group"+i+"point"+j).append("<div id='story"+index+"group"+i+"indexCon"+j+"' class='indexCon "+group+"'><div id='story"+index+"group"+i+"pointIndex"+j+"' class='pointIndex'>"+graphic.attributes.order+"</div></div>");
 					}
 					else{
-						$("#story"+index+"group"+i+"point"+j).append("<div id='story"+index+"group"+i+"indexCon"+j+"' class='indexCon "+group+"'><img id='story"+index+"group"+i+"pointIndex"+j+"' class='pointIndex' src='images/icons/"+group+"/NumberIcon"+fileChange+(j+1)+".png'></div>");
+						$("#story"+index+"group"+i+"point"+j).append("<div id='story"+index+"group"+i+"indexCon"+j+"' class='indexCon "+group+"'><img id='story"+index+"group"+i+"pointIndex"+j+"' class='pointIndex' src='images/icons/colored/"+fileChange+".png'></div>");
 					}
 					/*
 					else{
@@ -148,7 +156,7 @@ function generateGraphics(index){
 						var textWidth;
 
 						if (ifImg == true){
-							textWidth = (($(".storyPoint").width()) - 115);
+							textWidth = (($(".storyPoint").width()) - 135);
 							$("#story"+index+"group"+i+"textCon"+j).css('left',115);
 						}
 						else{
@@ -177,7 +185,7 @@ function generateGraphics(index){
 function startUpListeners(index){
 	dojo.connect(_storyPoints[index],"onMouseOver",function(){
 		_maps[index].setCursor('pointer');
-		event.graphic.setSymbol(event.graphic.symbol.setHeight(34).setWidth(27).setOffset(3,10));
+		event.graphic.setSymbol(event.graphic.symbol.setHeight(32).setWidth(27).setOffset(0,10));
         if (popupOpen == false){
     		$("#hoverInfo").html(event.graphic.attributes.displayTitle);
 			var pt = _maps[index].toScreen(event.graphic.geometry);
@@ -186,7 +194,7 @@ function startUpListeners(index){
 	});
 	dojo.connect(_storyPoints[index],"onMouseOut",function(){
 		_maps[index].setCursor('default');
-		event.graphic.setSymbol(event.graphic.symbol.setHeight(28).setWidth(22).setOffset(3,8));
+		event.graphic.setSymbol(event.graphic.symbol.setHeight(26).setWidth(22).setOffset(0,8));
         $("#hoverInfo").hide();
 	});
 	dojo.connect(_maps[index],"onClick",function(){
@@ -225,7 +233,7 @@ function startUpListeners(index){
 			dojo.forEach(_storyPoints,function (lyr,idx){
 				dojo.forEach(lyr.graphics,function(graphic,ix){
 					if (graphic.attributes == attr){
-						graphic.setSymbol(graphic.symbol.setHeight(34).setWidth(27).setOffset(3,10));
+						graphic.setSymbol(graphic.symbol.setHeight(32).setWidth(27).setOffset(0,10));
 					}
 				});
 			});
@@ -254,7 +262,7 @@ function startUpListeners(index){
         $("#hoverInfo").hide();
         dojo.forEach(_storyPoints,function (lyr,idx){
     		dojo.forEach(lyr.graphics,function(graphic,ix){
-				graphic.setSymbol(graphic.symbol.setHeight(28).setWidth(22).setOffset(3,8));
+				graphic.setSymbol(graphic.symbol.setHeight(26).setWidth(22).setOffset(0,8));
 			});
 		});
     });

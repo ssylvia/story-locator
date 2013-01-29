@@ -109,7 +109,7 @@
 	  #storyTabs{
 	  background-color:#fff;
 	  width:100%;
-	  height:35%;
+	  height:330px;
 	  border-bottom:5px solid #444;
 	  }
 
@@ -144,7 +144,7 @@
 	  }
 
 	  #description{
-	  padding:15px;
+	  padding:15px 15px 0 15px;
 	  overflow:auto;
 	  }
 
@@ -193,7 +193,7 @@
 	  display:table-cell;
 	  vertical-align:middle;
 	  text-align:center;
-	  height:28px;
+	  height:26px;
 	  width:22px;
 	  }
 
@@ -228,6 +228,8 @@
 
       #map {
       margin:0;
+      background:#90b5e1;
+      overflow:hidden;
       }
 
 	  #hoverInfo{
@@ -251,8 +253,8 @@
 
 	  #legendCon{
 	  position:absolute;
- 	  width:300px !important;
-	  margin-left:100px;
+ 	  width:180px !important;
+	  right:100px;
   	  z-index:100;
 	  }
 
@@ -261,7 +263,6 @@
 	  background:#fff;
 	  max-height:450px;
 	  overflow:auto;
-	  padding:10px;
 	  font-family:Arial, Helvetica, sans-serif;
 	  }
 
@@ -273,7 +274,6 @@
 	  position:relative;
 	  background:#848484;
 	  margin-top:-1px;
-	  width:125px;
 	  .height:28px;
 	  cursor:pointer;
 	  z-index:100;
@@ -290,6 +290,10 @@
 	  color:#fff;
 	  font-family:Arial, Helvetica, sans-serif;
 	  }
+
+    #legImg{
+      width:180px;
+    }
 
 	  .mapDiv{
 	  position:absolute;
@@ -357,3 +361,7 @@
 	  .tundra .dijitSplitterH, .tundra .dijitGutterH{
 	  background:none;
 	  }
+
+    .maximize{
+      display:none;
+    }
