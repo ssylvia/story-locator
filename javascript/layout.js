@@ -48,7 +48,10 @@ var findTitle = function(obj){
 function findLayers(layers,index){
 	var csvLayers = [];
 	dojo.forEach(layers,function(layer){
-		if(layer.id.search("csv") == 0 && layer.visibility == true){
+		if(layer.type === "CSV"){
+			csvLayers.push(layer.layerObject);
+		}
+		else if(layer.id.search("csv") == 0 && layer.visibility == true){
 			dojo.forEach(layer.featureCollection.layers,function(lyr){
 				csvLayers.push(lyr.layerObject);
 			});
@@ -82,7 +85,7 @@ function generateGraphics(index){
 			}
 
 			dojo.forEach(layer.graphics,function(graphic,j){
-				if (j < 99){
+				if (j < 500){
 					if (shaded == true){
 						shaded = false;
 						$("#story"+index+"group"+i).append("<div id='story"+index+"group"+i+"point"+j+"' class='storyPoint' title='Click for more information'></div>");
